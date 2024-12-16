@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 fn main() {
     let mut node_a:Node<String>= Node::new(String::from("a"));
     let mut  node_b:Node<String>= Node::new(String::from("b"));
@@ -12,7 +14,10 @@ fn main() {
     node_a.right(Some(Box::new(node_c)));
 
    let value = depth_first_value(&node_a);
-   println!("value:{:?}", value)
+   println!("value:{:?}", value);
+   let value = breadth_first_value(&node_a);
+   println!("value_queue:{:?}", value);
+   
 }
 //box because its recursive, hence possibly infinite,  storing the data(Node<T>) on heap because size is not fixed
 //phantomdata
@@ -52,4 +57,19 @@ fn depth_first_value<T: std::fmt::Debug>(root: &Node<T>)-> Vec<&String>  {
     }
     current_value
 
+}
+fn  breadth_first_value<T: std::fmt::Debug>(root: &Node<T>)-> Vec<&String>  {
+    let mut stack:VecDeque<&Node<T>> = VecDeque::new();
+     stack.push_back(root);
+    let mut current_value:Vec<&String>  = Vec::new();
+    while let Some(current) = stack.pop_front(){
+      current_value.push(&current.val);
+    if let Some(ref left) = &current.left {
+    stack.push_back(left);
+    }
+    if let Some(ref right) = &current.right {
+    stack.push_back(right);
+    }
+     }
+     current_value
 }
