@@ -17,6 +17,8 @@ fn main() {
    println!("value:{:?}", value);
    let value = breadth_first_value(&node_a);
    println!("value_queue:{:?}", value);
+   let includes = tree_includes_breadth(&node_a, &String::from("x"));
+   println!("includes:{:?}", includes);
    
 }
 //box because its recursive, hence possibly infinite,  storing the data(Node<T>) on heap because size is not fixed
@@ -73,3 +75,19 @@ fn  breadth_first_value<T: std::fmt::Debug>(root: &Node<T>)-> Vec<&String>  {
      }
      current_value
 }
+ 
+fn tree_includes_breadth<T: std::fmt::Debug>(root: &Node<T>, search_val:&String)-> bool {
+ let mut stack:VecDeque<&Node<T>> = VecDeque::new();
+    stack.push_back(root);
+    while let Some(current) = stack.pop_front(){
+    if &current.val == search_val{return true;}
+    if let Some(ref left) = &current.left {
+    stack.push_back(left);
+    }
+    if let Some(ref right) = &current.right {
+    stack.push_back(right);
+    }
+    };
+    return false;
+}
+
