@@ -1,38 +1,61 @@
-# Depth-First Traversal of a Binary Tree in Rust
+# Binary Tree Traversal & Utility Functions in Rust
 
-This project showcases a simple binary tree implementation in Rust and demonstrates a depth-first search traversal using a stack. The code includes:
+This project demonstrates how to build a simple binary tree in Rust and then perform various operations on it. These operations include:
 
-1. A `Node<T>` struct representing each tree node (with optional left and right children).
-2. A `depth_first_value` function that performs a depth-first traversal and returns the values of each node in the order they were visited.
+- **Depth-First Search** (DFS)
+- **Breadth-First Search** (BFS)
+- **Checking for a value** in the tree (both breadth-first and recursive approaches)
+- **Computing the sum** of all node values in the tree
+
+## Table of Contents
+- [Overview](#overview)
+- [Data Structure](#data-structure)
+- [Functions](#functions)
+  - [Depth-First Search](#depth-first-search)
+  - [Breadth-First Search](#breadth-first-search)
+  - [Tree Includes (Breadth-First)](#tree-includes-breadth-first)
+  - [Tree Includes (Recursive)](#tree-includes-recursive)
+  - [Tree Sum](#tree-sum)
+- [Usage](#usage)
+- [Output](#output)
+- [Notes](#notes)
+
+---
 
 ## Overview
 
-### What Does the Code Do?
+In `main()`, we construct a small integer-based binary tree and then call several functions that operate on the tree:
 
-1. **Builds a small binary tree** with the following structure:
-```css
-      a
-     / \
-    b   c
-   / \   \
-  d   e   f
+```text
+         3
+        / \
+      11   4
+     / \    \
+    4   2    1
+
 ```
 
-2. **Performs a depth-first search** (DFS) traversal on the tree using a stack.
-3. **Prints the traversal order** to the console.
+After building this tree, the code demonstrates:
+
+1. **Depth-first traversal of the tree, returning a list of visited node values.
+2. **Breadth-first traversal of the tree, also returning a list of visited node values.
+3. **tree_includes_breadth: A breadth-first search (BFS) approach that checks if a given string-based value is present in the tree (by converting each node’s value to a string and comparing).
+4. **tree_includes_recursive: A recursive approach that checks if a given value (again, as a string) is present in the tree.
+5. **tree_sum: Sums up all node values in the tree.
 
 ### Data Structure Details
 
 - **`Node<T>` struct**  
-Each node holds a string value (`val`), optional left and right child nodes (wrapped in a `Box` so they live on the heap), and a PhantomData field (`phantom`) which is a zero-sized type used here for illustrative purposes (it doesn't affect runtime behavior).
-
+1. **val: T: The node’s value (generic type).
+2. **left: An Option-wrapped Box pointing to the left child node.
+3. **right: Same as above, but for the right child node.
+We use boxes (Box) because this is a potentially recursive data structure stored on the heap.
 ```rust
 #[derive(Debug, Clone)]
 struct Node<T> {
-   val: String,
+   val: T,
    left: Option<Box<Node<T>>>,
-   right: Option<Box<Node<T>>>,
-   phantom: std::marker::PhantomData<T>,
+   right: Option<Box<Node<T>>>
 }
 ```
 ### Running the Code
