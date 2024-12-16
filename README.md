@@ -10,12 +10,13 @@ This project showcases a simple binary tree implementation in Rust and demonstra
 ### What Does the Code Do?
 
 1. **Builds a small binary tree** with the following structure:
-
+```css
       a
      / \
     b   c
    / \   \
   d   e   f
+```
 
 2. **Performs a depth-first search** (DFS) traversal on the tree using a stack.
 3. **Prints the traversal order** to the console.
