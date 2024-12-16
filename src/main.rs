@@ -19,6 +19,8 @@ fn main() {
    println!("value_queue:{:?}", value);
    let includes = tree_includes_breadth(&node_a, &String::from("x"));
    println!("includes:{:?}", includes);
+   let tree_includes_recursive = tree_includes_recursive(&Some(Box::new(node_a)), &String::from("e"));
+   println!("tree_includes_recursive:{:?}", tree_includes_recursive);
    
 }
 //box because its recursive, hence possibly infinite,  storing the data(Node<T>) on heap because size is not fixed
@@ -90,4 +92,12 @@ fn tree_includes_breadth<T: std::fmt::Debug>(root: &Node<T>, search_val:&String)
     };
     return false;
 }
-
+fn tree_includes_recursive<T: std::fmt::Debug>(root: &Option<Box<Node<T>>>, search_val:&String)-> bool {
+    if let Some(node) = root {
+        if &node.val == search_val {
+            return true;
+        }
+        return tree_includes_recursive(&node.left, search_val) || tree_includes_recursive(&node.right, search_val);
+    }
+    false
+}
