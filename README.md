@@ -46,10 +46,10 @@ After building this tree, the code demonstrates:
 ### Data Structure Details
 
 - **`Node<T>` struct**  
-** - val: T: The node’s value (generic type).**
-** - left: An Option-wrapped Box pointing to the left child node.**
-** - right: Same as above, but for the right child node.**
-** - We use boxes (Box) because this is a potentially recursive data structure stored on the heap.**
+**- val: T: The node’s value (generic type).**
+**- left: An Option-wrapped Box pointing to the left child node.**
+**- right: Same as above, but for the right child node.**
+**- We use boxes (Box) because this is a potentially recursive data structure stored on the heap.**
 ```rust
 #[derive(Debug, Clone)]
 struct Node<T> {
