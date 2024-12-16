@@ -37,19 +37,19 @@ In `main()`, we construct a small integer-based binary tree and then call severa
 
 After building this tree, the code demonstrates:
 
-1. **Depth-first traversal of the tree, returning a list of visited node values.
-2. **Breadth-first traversal of the tree, also returning a list of visited node values.
-3. **tree_includes_breadth: A breadth-first search (BFS) approach that checks if a given string-based value is present in the tree (by converting each node’s value to a string and comparing).
-4. **tree_includes_recursive: A recursive approach that checks if a given value (again, as a string) is present in the tree.
-5. **tree_sum: Sums up all node values in the tree.
+1. **Depth-first traversal of the tree, returning a list of visited node values.**
+2. **Breadth-first traversal of the tree, also returning a list of visited node values.**
+3. **tree_includes_breadth: A breadth-first search (BFS) approach that checks if a given string-based value is present in the tree (by converting each node’s value to a string and comparing).**
+4. **tree_includes_recursive: A recursive approach that checks if a given value (again, as a string) is present in the tree.**
+5. **tree_sum: Sums up all node values in the tree.**
 
 ### Data Structure Details
 
 - **`Node<T>` struct**  
-1. **val: T: The node’s value (generic type).
-2. **left: An Option-wrapped Box pointing to the left child node.
-3. **right: Same as above, but for the right child node.
-We use boxes (Box) because this is a potentially recursive data structure stored on the heap.
+** - val: T: The node’s value (generic type).**
+** - left: An Option-wrapped Box pointing to the left child node.**
+** - right: Same as above, but for the right child node.**
+** - We use boxes (Box) because this is a potentially recursive data structure stored on the heap.**
 ```rust
 #[derive(Debug, Clone)]
 struct Node<T> {
